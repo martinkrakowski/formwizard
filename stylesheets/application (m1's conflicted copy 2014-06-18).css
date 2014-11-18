@@ -1,0 +1,445 @@
+/** iCohere Webinar Setup Wizard
+  * (c) 2013-14
+  * 
+  */
+
+.masthead {
+  width: 100%;
+  height: auto;
+  background-image: url(../images/opacityDark.png);
+  background-repeat: repeat;  
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  overflow: hidden;
+}
+.masthead.active { 
+  height: 100%;
+  overflow: scroll;
+}
+.masthead.active img.icons  { 
+  display: block; 
+  margin: 20px 0; 
+  padding: 20px 0;
+  border-bottom: 3px solid #fff;
+}
+.masthead p.step-counter {
+  color: #fff;
+  margin: 20px;
+}
+.masthead.active p.step-counter { display: none }
+.masthead h1.logotype {
+  display: block;
+  float: left;
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 36px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 6px;
+}
+.masthead h1.logotype img {
+  display: block;
+  float: left;
+  margin: 0 15px 0 0;
+  padding: 0 15px 0 0;
+  border-right: 1px solid #fff;
+}
+.masthead .navigation-tools,
+.masthead .navigation-tools .columns { padding-right: 0 }
+.masthead ul.toolbar.steps {
+  float: right;
+  display: inline;
+  margin: 0;
+  color: #fff;
+  position: relative;
+}
+.masthead ul.toolbar.steps li.save-and-exit {
+  float: right !important;
+  height: auto;
+  background-color: transparent;
+  border-radius: 0;
+  margin: 0;
+
+}
+.masthead ul.toolbar.steps li a { color: inherit }
+.masthead ul.toolbar.steps li:last-child  { border: none }
+.masthead ul.toolbar.steps { list-style: none; position: relative }
+.masthead.active ul.toolbar.steps { display: none }
+.masthead ul.toolbar.steps li {
+  display: block;
+  float: left;
+  margin: 10px 5px 3px;
+  padding: 0;
+  background-color: #366CAF;
+  border-radius: 16px;
+  font-size: 12px;
+  line-height: 28px;
+  position: relative;
+}
+.masthead ul.toolbar.steps li.title { background-color: transparent }
+.masthead ul.toolbar.steps span { list-style: none }
+.masthead ul.toolbar.steps li span.number {
+  display: block;
+  float: left;
+  padding: 0 10px ;
+  text-align: center;
+}
+.masthead ul.toolbar.steps li span.step-tooltip { 
+  display: none;
+  float: left;
+  width: 125px;
+  height: 22px;
+  margin: 0 5px;
+  padding: 5px;
+  line-height: 12px;
+  background-color: #222;
+  border-radius: 5px;
+  box-shadow: 0 0 3px #666;
+  overflow: hidden !important;
+  position: absolute;
+  left: 15px;
+  top: 17px;
+  z-index: 11;
+}
+.masthead ul.toolbar.steps li:hover span.step-tooltip { 
+  display: block;
+  float: left;
+  text-indent: 0px;
+}
+#left-sidebar-bg {
+  width: 26%;
+  min-width: 370px;
+  height: 100%;
+  background-color: #366CAF;
+  position: fixed;
+  left: 0;
+  z-index: 1;
+}
+
+/* Wizard Question Content */
+.wizard-question-content {
+  width: 100%;
+  min-height: 100px;
+  margin: 0;
+  padding-top: 20px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background-image: url(../images/divider.png);
+  background-position: top left;
+  background-repeat: no-repeat;
+  -webkit-transition: All 0.25s ease;
+  -moz-transition: All 0.25s ease;
+  -o-transition: All 0.25s ease;
+  -ms-transition: All 0.25s ease;
+  transition: All 0.25s ease;    
+}
+.wizard-question-content.unanswered { display: none !important }
+.wizard-question-content { margin-bottom: 40px }
+.wizard-question-content#wizard--webinar-room { padding-bottom: 53px }
+#prerequisites .wizard-question-content { background-color: transparent }
+.wizard-question-content.first  { background-image: none; margin: 60px 0 1px !important }
+.wizard-question-content.active { 
+  padding: 30px 15px; 
+  background-image: url(../images/opacityDark.png); 
+  background-repeat: repeat; 
+  /*background-color: #2C5266*/ 
+  top: 0; 
+}
+.masthead.active .wizard-question-content { background-image: none }
+.wizard-question-content .left-sidebar-content {
+  height: 100%;
+  min-width: 350px;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.wizard-question-content .left-sidebar-content ul.questions {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 100;
+  line-height: 26px;
+  color: #fff;
+  letter-spacing: 1px;
+  text-decoration: none;
+  list-style-type: none;
+}
+.wizard-question-content .left-sidebar-content ul.questions li { 
+  clear: both; 
+  margin: 20px 0 30px;
+  padding-bottom: 10px;
+  overflow: hidden;
+}
+.wizard-question-content .left-sidebar-content ul.questions li .question-number {
+  float: left;
+  margin: 0 15px 0 0;
+  padding: 5px 12px;
+  font-size: 18px;
+  font-weight: normal;
+  color: #2C5266;
+  background-color: #fff;
+  border-radius: 24px;
+  position: relative;
+  top: 0;
+}
+.wizard-question-content .left-sidebar-content ul.questions li .question {
+  float: left;
+  max-width: 350px;
+  position: relative;
+  top: 3px;
+}
+.wizard-question-content .left-sidebar-content ul.questions li .question.zero { margin: -5px 20px }
+.wizard-question-content .left-sidebar-content ul.questions li span.expanded-question { 
+  font-size: 16px;
+  line-height: 19px;
+}
+.wizard-question-content .form-content {
+   margin: 10px;
+   padding: 10px;
+   background-color: transparent;
+   position: relative;
+}
+.wizard-question-content.active .form-content { background-color: #fff }
+
+/* Editable or summary form data (show/hide) */
+.wizard-question-content .form-content .row.summary-saved-data { 
+  display: none;
+  margin: 5px;
+  background-color: #fff !important;
+  border-radius: 5px;
+}
+.wizard-question-content .form-content .row.editable-form-data { display: block }
+.wizard-question-content .form-content.saved .row.summary-saved-data { display: block  }
+.wizard-question-content .form-content.saved .row.editable-form-data { display: none   }
+.wizard-question-content .form-content ul.prerequisite-data-required { 
+  margin: 20px 10px;
+  list-style-position: inside;
+  list-style: none;
+}
+.wizard-question-content .form-content ol { margin: 10px 0 20px 35px }
+.wizard-question-content .form-content .row.editable-form-data ul.buttons { 
+  float: right;
+  display: block;
+}
+.wizard-question-content .form-content .row.editable-form-data ul.buttons li {
+  float: left;
+  display: block;
+  margin: 10px;
+  list-style: none;
+}
+.wizard-question-content .form-content ul.prerequisite-data-required li { list-style: none }
+.wizard-question-content .form-content ul.prerequisite-data-required li .prerequisite-options {
+  float: left; 
+  min-width: 90px;
+  margin: 0px 10px 0 0; 
+  padding: 2px 10px; 
+  text-align: center;
+  border-radius: 3px; 
+  color: #fff; 
+  font-weight: normal; 
+  font-size: 11px;
+}
+.wizard-question-content .form-content ul.prerequisite-data-required li .prerequisite-options.enabled  { background-color: green }
+.wizard-question-content .form-content ul.prerequisite-data-required li .prerequisite-options.disabled { background-color: #990000 }
+.wizard-question-content .form-content ul { position: relative }
+.wizard-question-content .form-content ul.prerequisite-data-required li {
+  margin: 15px;
+  padding: 0;
+  font-size: 80%;
+  font-weight: bold;
+}
+.wizard-question-content .form-content ul.prerequisite-data-required li.heading {
+  display: block;
+  padding: 5px 10px;
+  background-color: #687A8E;
+  color: #fff;
+  font-weight: normal;
+  border-radius: 0;
+}
+.wizard-question-content .form-content ul.prerequisite-data-required li a.link {
+  margin: 0 10px;
+  font-size: 80%;
+  font-weight: normal;
+  color: #77C4D2;
+  border-bottom: 1px dotted #77C4D2;
+}
+.wizard-question-content .form-content ul.prerequisite-data-required li span.icon {
+  display: block;
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 0 10px 0 0;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+}
+.wizard-question-content .form-content ul.prerequisite-data-required li span.icon.true     { background-image: url(../images/ico_trueOk.png); background-position: 0px 0px; }
+.wizard-question-content .form-content ul.prerequisite-data-required li span.icon.false    { background-image: url(../images/ico_falseError.png); background-position: 0px 2px; }
+.masthead.active .wizard-question-content ul.prerequisite-data-required li span.icon.true  { background-image: url(../images/ico_trueOk_white.png) }
+.masthead.active .wizard-question-content ul.prerequisite-data-required li span.icon.false { background-image: url(../images/ico_falseError_white.png) }
+
+/* Time Select */
+.wizard-question-content .form-content form ul.time-select    { margin: 0 }
+.wizard-question-content .form-content form ul.time-select li {
+  display: block;
+  float: left;
+  height: 20px;
+  min-width: 40px;
+  margin: 2px;
+  padding: 0 10px 3px;
+  line-height: 20px;
+  color: #333;
+  background-color: #D1D7DD;
+  border-radius: 3px;
+  box-shadow: 1px 1px 0px #333;
+  text-align: center;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.wizard-question-content .form-content form ul.time-select li:hover,
+.wizard-question-content .form-content form ul.time-select li.active {
+  color: #fff;
+  background-color: #333;
+}
+.wizard-question-content .form-content form ul.time-select li.hour { }
+.wizard-question-content .form-content form ul.time-select li.minute:first-child,
+.wizard-question-content .form-content form ul.time-select li.ampm:first-child   { clear: both }
+.wizard-question-content .form-content form ul.time-select li.timezone           { background-color: transparent; box-shadow: none }
+.wizard-question-content .form-content form ul.time-select li.timezone:hover     { background-color: transparent; color: #333 }
+
+/* Druation */
+@keyframes revealEditlink {
+  from { right: -170px; }
+  to   { right: -30px; }
+}
+@-webkit-keyframes revealEditlink {
+  from { right: -170px; }
+  to   { right: -30px; }
+}
+
+.wizard-question-content .form-content form ul.time-select {}
+.wizard-question-content .form-content a.edit-link { 
+  display: block;
+  width: 175px;
+  height: 35px;
+  margin: 30px 0; 
+  padding: 5px; 
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 24px;
+  border-width: 0 0 1px 1px;
+  -webkit-transition: All 0.25s ease;
+  -moz-transition: All 0.25s ease;
+  -o-transition: All 0.25s ease;
+  -ms-transition: All 0.25s ease;
+  transition: All 0.25s ease;  
+}
+.wizard-question-content .form-content a.edit-link:hover { 
+  background-color: #366caf; 
+  box-shadow: 0 0 6px #8b9cbd;
+  color: #fff;
+}
+.wizard-question-content.active .form-content a.edit-link   { display: none !important }
+.wizard-question-content .form-content a.edit-link img.icon {
+  display: block;
+  float: left;
+  margin: 2px 10px 0 0;
+  width: 18px;
+  height: 18px;
+}
+.wizard-question-content a.download-link img.icon {
+  display: block;
+  float: left;
+  margin: 0 10px 0 0;
+  width: 24px;
+  height: 24px; 
+}
+.wizard-question-content a.download-link      { line-height: 21px }
+.wizard-question-content.active .form-content { padding: 50px 20px 10px }
+.wizard-question-content.active .form-content { border-bottom: 1px solid #333 }
+.wizard-question-content .form-content h2 {
+  display: none;
+  padding: 7px 15px;
+  background-color: #687A8E;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 100;
+  position: absolute;
+  top: -3px;
+  left: 20px;
+}
+.wizard-question-content.active .form-content h2 { display: block }
+.wizard-question-content .form-content form      { margin: 5px 0 0 -13px; padding: 0 }
+
+/* Notification Modals */
+#reveal-modal-bg { overflow: hidden !important }
+#reveal-modal-bg #save-and-review-modal { 
+  overflow: hidden !important;
+}
+
+/* General Form Elements */
+form label        { line-height: 18px }
+form label.inline { line-height: 21px }
+form label.notice { 
+  margin: 0 0 10px; 
+  font-size: 13px !important;
+}
+form input.short  { max-width: 50px }
+form .spacer      { margin: 30px 0 !important }
+
+/* Additional button colors */
+.button.orange { background-color: #F68C7F }
+.button.red    { background-color: #990000 }
+.button.green  { background-color: #336600 }
+.button.blue   { background-color: #366CAF }
+.button.blue.light   { background-color: #6e81a7 !important }
+.button.dark         { background-color: #222222 }
+.button.orange:hover { background-color: #F68C7F }
+.button.red:hover    { background-color: #5D0000 }
+.button.green:hover  { background-color: #2A5302 }
+.button.dark:hover   { background-color: #000000 }
+.button.blue.light:hover   { background-color: #8B9CBD !important }
+.button.close-reveal-modal { 
+  color: #fff;
+  font-size: 100%;
+  position: relative; 
+}
+.button.save-progress {
+  min-width: 225px;
+  margin-bottom: 0;
+  position: relative;
+}
+.button.save-progress span.autosave {
+  display: none;
+  width: 100%;
+  padding: 3px;
+  font-size: 10px;
+  /*background-color: #3655af;*/
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  text-align: center;
+  opacity: 1.0;
+}
+.button.save-progress:hover span.autosave {
+  display: block;
+  width: auto;
+  height: 20px;
+  padding: 0;
+  overflow: hidden !important;
+  position: absolute;
+  right: -5px;
+  top: 37px;
+  z-index: 11;  
+}
+/*.masthead.active .button { box-shadow: 1px 1px 2px #000 }*/
+
+.clear { clear: both !important }
+.small { font-size: 80% }
+.small img { width: 2% !important; height: 2% !important; position: relative; top: 4px; }
+.hide { display: none !important }

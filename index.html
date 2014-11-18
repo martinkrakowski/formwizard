@@ -1,0 +1,1027 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iCohere | Webinar Setup Wizard</title>
+  <link rel="stylesheet" href="stylesheets/foundation.css" type="text/css" />
+  <link rel="stylesheet" href="stylesheets/multiselect.css" type="text/css">
+  <link rel="stylesheet" href="stylesheets/application.css" type="text/css" />
+  <script type="text/javascript" src="javascripts/modernizr.js"></script>
+
+</head>
+<body id="top" data-edit-status>
+
+<!-- # iCohere Webinar Setup Wizard 
+     # (c) 2014
+     #
+     # -->
+
+
+     <!-- # Notes:
+          # Make sure all hidden fields have the disabled="disabled" attribute by default 
+          # webinarWizard.listenableField() will remove the attribute when the field is revealed
+          #
+          # Add a hidden input field for time selector and other JS based widgets so that 
+          # we can retrieve and populate the JSON data.
+          # -->
+
+<div class="masthead active">
+  <div class="large-12 columns navigation-tools">
+    <h1 class="large-4 columns logotype"><img src="images/logotype.png" /> Webinar Setup Wizard</h1>
+    <div class="large-7 columns">
+      <ul class="toolbar steps">
+        <li class="title hide">Go to Step</li>
+        <li class="nav" id="#wizard--existing-webinar-link"><a class="jumpLink" href="#wizard--existing-webinar"><span class="number">1</span><span class="step-tooltip">Get started</span></a></li>
+        <li class="nav" id="#wizard--existing-webinar-link"><a class="jumpLink" href="#wizard--webinar-room"><span class="number">2</span><span class="step-tooltip">Webinar Room</span></a></li>
+        <li class="nav" id="#wizard--existing-webinar-link"><a class="jumpLink" href="#wizard--webinar-session"><span class="number">3</span><span class="step-tooltip">Webinar Session</span></a></li>
+        <li class="nav" id="#wizard--existing-webinar-link"><a class="jumpLink" href="#wizard--webinar-registration"><span class="number">4</span><span class="step-tooltip">Webinar Registration</span></a></li>
+        <li class="nav" id="#wizard--existing-webinar-link"><a class="jumpLink" href="#wizard--webinar-assessment"><span class="number">5</span><span class="step-tooltip">Assessments</span></a></li>
+        <li class="cancel-webinar-setup">
+          <a href="#">Cancel webinar setup</a>
+        </li>
+        <li class="save-and-exit">
+          <a href="#" class="button blue light save-progress">Continue Later
+            <span class="autosave">Unsaved</span>
+          </a>
+        </li>    
+      </ul>
+    </div>
+  </div>
+
+  <!-- Prerequisites Modal Window -->
+  <div class="large-12 columns check-prerequisities" id="prerequisites">
+    <div class="large-12 columns prerequisites">
+      <!-- Prerequisites Modal Content -->
+      <div class="large-12 columns wizard-question-content active">
+        <div class="large-3 columns left-sidebar-content">
+          <ul class="questions">
+            <li>
+              <div class="question-number hide">0</div>
+              <div class="large-10 columns question zero">
+                Checking Prerequisites<br />
+                <span class="expanded-question">Please review your site configuration to confirm everything is ready to setup your webinar.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="large-7 columns form-content">
+          <h2>These are your configured options</h2>
+          <form>
+            <div class="row">
+              <div class="large-12 columns">
+                <div class="large-12 columns">
+                  <ul class="prerequisite-data-required">
+                    <li data-prerequisites-module="meetings">
+
+                  <!-- #
+                       # Summary text will require CF if statement
+                       # if enabled show:  <div class="enabled"><div class="prerequisite-options">Enabled</div> <p>Meetings are enabled</p></div>
+                       # else show :       <div class="disabled"><div class="prerequisite-options">Not Enabled</div> <p>Please enable meetings before proceeding.</p></div>
+                       # -->
+
+
+                      <div class="enabled"><div class="prerequisite-options">Enabled</div> <p>Meetings are enabled</p></div>
+                      <div class="disabled"><div class="prerequisite-options">Not Enabled</div> <p>Please enable meetings before proceeding.</p></div>
+                    </li>
+                    <li data-prerequisites-module="registration">
+                      <div class="enabled"><div class="prerequisite-options">Enabled</div> <p>Registration is enabled</p></div>
+                      <div class="disabled"><div class="prerequisite-options">Not enabled</div> <p>You cannot register attendees through iCohere's registration system. <a class="download-link" href="#"><img class="icon" src="images/ico_download.png" alt="" />How can I?</a></p></div>
+                      <div class="prerequisites--enable-module enabled">
+                        <input class="wizard--prerequisites-include-module" id="prerequisites--registration-module" name="prerequisites--registration-module" type="checkbox">
+                        <label for="prerequisites--registration-module">Include this module in your webinar configuration</label>
+                      </div>
+                    </li>
+                    <li data-prerequisites-module="fees">
+                      <div class="enabled"><div class="prerequisite-options">Enabled</div> <p>A merchant account is enabled so you can charge fees for your webinar.</p></div>
+                      <div class="disabled"><div class="prerequisite-options">Not enabled</div> <p>No merchant account is enabled. You cannot charge fees for this webinar. <a class="download-link" href="#"><img class="icon" src="images/ico_download.png" alt="" />How can I?</a></p></div>
+                      <div class="prerequisites--enable-module enabled">
+                        <input class="wizard--prerequisites-include-module" id="prerequisites--fees-module" name="prerequisites--fees-module" type="checkbox">
+                        <label for="prerequisites--fees-module">Include this module in your webinar configuration</label>
+                      </div>
+                    </li>
+                    <li data-prerequisites-module="assessment">
+                      <div class="enabled"><div class="prerequisite-options">Enabled</div> <p>Assessments is enabled.</p></div>
+                      <div class="disabled"><div class="prerequisite-options">Not enabled</div> <p>You cannot link a test to this webinar. <a class="download-link" href="#"><img class="icon" src="images/ico_download.png" alt="" />How can I?</a></p></div>
+                      <div class="prerequisites--enable-module enabled">
+                        <input class="wizard--prerequisites-include-module" id="prerequisites--assessment-module" name="prerequisites--assessment-module" type="checkbox">
+                        <label for="prerequisites--assessment-module">Include this module in your webinar configuration</label>
+                      </div>
+                      <ul class="submodule">
+                        <li data-prerequisites-module="tests">
+                          <div class="enabled"><p><img width="16" src="images/ico_trueOk.png" alt="" /> Tests exist.</p></div>
+                          <div class="disabled"><p><img width="16" src="images/ico_falseError.png" alt="" /> Tests do not exist.</p></div>
+                        </li>
+                        <li data-prerequisites-module="certificate">
+                          <div class="enabled"><p><img width="16" src="images/ico_trueOk.png" alt="" />  Certifcate of completion exists.</p></div>
+                          <div class="disabled"><p><img width="16" src="images/ico_falseError.png" alt="" /> Certifcate of completion does not exist. Students will not receive a certifcate of completion for attending this webinar. How can they?</a></p></div>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <label>You may proceed with the currently configured options, or cancel to configure the modules you require for this Webinar.</label><br />
+                  <!-- <input id="hide-prerequisites" type="checkbox"><label for="hide-prerequisites">Do not show this window again.</label> -->
+                  <div class="clear">
+                    <!-- Disable proceed button if meetings is not enabled -->
+                    <a href="#" class="button green" id="prerequisite-proceed">Proceed</a>
+                    <a href="#" class="button dark" id="prerequisite-cancel">Cancel &amp; Exit</a>                  
+                  </div>                  
+                </div>                
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- End Prerequisites Modal Content -->
+    </div>
+  </div>
+
+  <!-- Next Steps Modal Window -->
+  <div class="large-12 columns prerequisites nextsteps hide" id="nextsteps">
+    <!-- Next Steps Modal Content -->
+    <div class="large-12 columns wizard-question-content active">
+      <div class="large-3 columns left-sidebar-content">
+        <ul class="questions">
+          <li>
+            <div class="question-number hide">0</div>
+            <div class="large-10 columns question zero">
+              Next Steps<br />
+              <span class="expanded-question">
+                Your webinar, {registration}, and {assessment} have been created using the settings you selected.
+                You can modify these settings or select other advanced settings by navigating to the appropriate module
+                and editing the webinar session, registration form, or program / test options.                
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="large-7 columns form-content"  style="background-color: #fff">
+        <h2>Next Steps</h2>
+        <form>
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="large-12 columns">
+                <h4>Your webinar was saved and created!</h4>
+                <h5>Here are the links for you to use for this webinar.  They are also saved in your scratchpad.</h5>
+                <ol>
+                  <li>Permalink for attendance to this webinar</li>
+                  <li>Public links for this webinar. Anyone with this link can attend the webinar.</li>
+                  <li>Registration links
+                    <ul>
+                      <li>Member Early-bird discount</li>
+                      <li>Member Regular rate</li>
+                      <li>Non-member Early-bird discount</li>
+                      <li>Non-member Regular rate</li>
+                    </ul>
+                  </li>
+                <li>Link to test. Student must be a member of the {group name} group.</li>                
+                </ol>
+                <h5>Optional next steps</h5>
+                <ul>
+                  <li>To change any of your webinar settings, edit the session <a href="#">download instructions</a></li>
+                  <li>To add more regirstration discount codes, change the rates, add a custom banner to the registration, or configure ther special registration features, edit the registration form <a href="#">download instructions</a></li>
+                  <li>To set special test options (number of retries, time limits, etc.), edit the program. <a href="#">Download instructions</a></li>
+                </ul>
+              </div>
+              <div class="large-12 columns">
+                <a href="#" class="button green" id="prerequisite-proceed">Email me these instructions</a>
+                <a href="#" class="button" id="prerequisite-proceed">Close Wizard</a>
+              </div>              
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- End Prerequisites Modal Content -->
+  </div>
+</div>
+<div id="left-sidebar-bg"></div>
+
+
+<!-- #
+     # Begin Webinar Wizard - Form Data
+     # -->
+
+
+<!-- # Step summary fields require a 'data-summary-field' attribute
+     # example: <span data-summary-field="webinar-title"></span>
+     # Where the attribute value is equal to the form input field that it represents
+     #  -->
+
+
+<!-- (1) Webinar name / Use existing Webinar data -->
+<div class="large-12 columns wizard-question-content selected first" id="wizard--existing-webinar">
+  <div class="large-3 columns left-sidebar-content">
+    <ul class="questions">
+      <li>
+        <div class="question-number">1</div>
+        <div class="large-10 columns question">Get Started<br /></div>
+      </li>
+    </ul>
+  </div>
+
+
+<!-- # webinarWizard.updateSummary()
+     # Summary data is updated by matching an 
+     # input name value to the data-summary-field of a <span> tag 
+     # Example: 
+     #             <input name="example" />
+     #             <span data-summary-field="example"></span>
+     #
+     # -->
+
+
+  <!-- Editable form content -->
+  <div class="large-7 columns form-content saved">
+    <h2>Get Started</h2>
+    <form name="existing-webinar">
+      <!-- Saved Summary -->
+      <div class="row summary-saved-data">
+        <div class="large-12 columns">
+          <div class="large-9 columns">
+            <h4>Webinar title: <span data-summary-field="webinar-title">{New Title}</span></h4>
+            <ul>
+              <!-- CF: option 1 -->
+              <li>Options are based on, <strong><span data-summary-field="previous-webinar">{Previous webinar title}</span></strong></li>
+              <!-- end CF 1 -->
+              <!-- CF: option 2 -->
+              <li>Starting <strong><span data-summary-field="webinar-title">{New Title}</span></strong> from scratch</li>
+              <!-- end CF 2 -->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editable form content -->
+      <div class="row editable-form-data">
+        <div class="large-12 columns">
+          <div class="large-3 columns">
+            <label class="inline"><strong>Title of Webinar</strong></label>
+          </div>
+          <div class="small-9 columns">
+            <input type="text" name="webinar-title" placeholder="Title of Webinar" />
+          </div>
+        </div>
+        <div class="large-12 columns">
+          <div class="large-12 columns">
+            <input type="radio" name="clone-webinar" value="yes" class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-webinar-model" id="clone-webinar-yes"><label for="clone-webinar-yes">Use a previous webinar as a model for <span id="stored-webinar-title">{Title of Webinar}</span></label>
+          </div>
+          <div class="large-12 columns">
+            <input type="radio" name="clone-webinar" value="no" class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-webinar-model" id="clone-webinar-no"><label for="clone-webinar-no">Start from scratch</label>
+          </div>
+        </div>
+        <div class="large-12 columns spacer hide" id="webinar--listenable-select-webinar-model">
+          <div class="large-9 columns">
+            <label>Select the Webinar to use as a model</label>
+            <select name="previous-webinar" disabled>
+              <option value="webinar01">Webinar Title 001</option>
+              <option value="webinar02">Webinar Title 002</option>
+              <option value="webinar03">Webinar Title 003</option>
+              <option value="webinar04">Webinar Title 004</option>
+            </select>
+          </div>
+        </div>
+        <div class="large-6 columns">
+          <a href="#" class="button green right save-and-continue" data-edit-id="wizard--webinar-room">Save &amp; Continue</a>
+        </div>
+      </div>
+    </form>
+    <a href="#" class="clear edit-link right" data-edit-id="wizard--existing-webinar"><img class="icon" src="images/ico_edit.png" alt="" />Edit Your Choices</a>
+  </div>
+</div>
+
+<!-- (2) Webinar room & group setup -->
+<div class="large-12 columns wizard-question-content selected unanswered" id="wizard--webinar-room">
+  <div class="large-3 columns left-sidebar-content">
+    <ul class="questions">
+      <li>
+        <div class="question-number">2</div>
+        <div class="large-10 columns question">Webinar Room<br /><span class="expanded-question">Select or create a room for this webinar and grant access rights.</span></div>
+      </li>
+    </ul>
+  </div>
+  <div class="large-7 columns form-content saved " id="wizard--webinar-room">
+    <h2>Webinar Room</h2>
+    <form>
+      <!-- Saved Summary -->
+      <div class="row summary-saved-data">
+        <div class="large-12 columns">
+          <div class="large-9 columns">
+            <h4>Your webinar room selection</h4>
+            <ul>
+              <li>This webinar will be added to: <strong><span data-summary-field="existing-room">{My existing webinar room title}</span></strong></li>
+              <li>This webinar is in a new webinar room: <strong><span data-summary-field="new-room-name">{My new webinar room title}</span></strong></li>
+              <li>Existing groups that can access this webinar room 
+                <ul>
+                  <li><strong><span data-summary-field="group-name">{Group 001}</span></strong></li>
+                  <li><strong><span data-summary-field="group-name">{Group 002}</span></strong></li>
+                </ul>
+              </li>
+              <li>You created a new group for this Webinar room: <strong><span data-summary-field="new-group-name">{Group 001}</span></strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editable form content -->
+      <div class="row editable-form-data">
+        <div class="large-12 columns">
+          <div class="large-12 columns">
+            <h4>Select an existing room</h4>
+          </div>
+          <div class="large-6 columns">
+            <select name="existing-room">
+              <option value="group01">Room 001</option>
+              <option value="group02">Room 002</option>
+              <option value="group03">Room 003</option>
+              <option value="group04">Room 004</option>
+            </select>
+          </div>          
+          <div class="large-6 columns">
+            <p><strong>or &nbsp;<a class="listenableField" data-listenable-field-type="link" data-listenable-field="webinar--listenable-new-room-name" href="#">create new room</a></strong></p>
+          </div>
+        </div>
+        <div class="large-12 columns hide" id="webinar--listenable-new-room-name">
+          <div class="large-9 columns">
+            <label>Name of new room</label>
+            <input type="text" name="new-room-name" placeholder="Room Name" disabled="disabled" />
+          </div>
+        </div>        
+
+        <div class="large-12 columns">
+          <div class="large-12 columns">
+            <label>Members of the following groups can access this room:</label><br />
+          </div>
+          <div class="large-6 columns">
+            <select name="group-name">
+              <option value="group01">Group 001</option>
+              <option value="group02">Group 002</option>
+              <option value="group03">Group 003</option>
+              <option value="group04">Group 004</option>
+            </select>
+          </div>
+          <div class="large-6 columns">
+            <p><strong>or &nbsp;<a class="listenableField" data-listenable-field-type="link" data-listenable-field="webinar--listenable-new-group" href="#">create new group</a></strong></p>
+          </div>
+        </div>
+        <div class="large-12 columns hide" id="webinar--listenable-new-group">
+          <div class="large-9 columns">
+            <label>Name of new group</label>
+            <input type="text" name="new-group-name" placeholder="Group Name" />
+          </div>
+        </div>
+        <div class="large-6 columns spacer">
+          <a href="#" class="left previous-step" data-edit-id="wizard--existing-webinar">&laquo; Back</a>
+        </div>
+        <div class="large-6 columns">
+          <a href="#" class="button green right save-and-continue" data-edit-id="wizard--webinar-session">Save &amp; Continue</a>
+        </div>
+      </div>      
+    </form>
+    <a href="#" class="clear edit-link right" data-edit-id="wizard--webinar-room"><img class="icon" src="images/ico_edit.png" alt="" />Edit Your Choices</a>
+  </div>
+</div>
+
+<!-- (3) Webinar Settings -->
+<div class="large-12 columns wizard-question-content selected unanswered" id="wizard--webinar-session">
+  <div class="large-3 columns left-sidebar-content">
+    <ul class="questions">
+      <li>
+        <div class="question-number">3</div>
+        <div class="large-10 columns question">Webinar Settings<br /><span class="expanded-question">Set the options for this session.</span></div>
+      </li>
+    </ul>
+  </div>
+  <div class="large-7 columns form-content saved">
+    <h2>Webinar Settings</h2>
+    <form>
+      <!-- Saved Summary -->
+      <div class="row summary-saved-data">
+        <div class="large-12 columns">
+          <div class="large-9 columns">
+            <h4>Webinar Settings</h4>
+            <ul>
+              <li><strong>My webinar session</strong></li>
+              <li>AV Settings: <strong>{AV-Setting}</strong> using: 250 Name of cosnet room</li>
+              <li>Date:  <strong>{MM/DD/YY}</strong></li>
+              <li>Duration:  <strong>2 Hours 10 Minutes</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editable form content -->
+      <div class="row editable-form-data">
+        <div class="large-12 columns">
+          <div class="large-9 columns">
+            <h4>Webinar Options</h4>
+            <div class="row">
+              <div class="large-6 columns">
+                <label><strong>Audio / Video settings.</strong></label>
+                <ul class="form-input">
+                  <li><input type="radio" name="avsettings" value="audio" id="audio-only"><label for="audio-only">Audio Only</label></li>
+                  <li><input type="radio" name="avsettings" value="video" id="video-only"><label for="video-only">Video Only</label></li>
+                  <li><input type="radio" name="avsettings" value="audio-and-video" id="audio-and-video"><label for="audio-and-video">Audio &amp; Video</label></li>
+                  <li><input type="radio" name="avsettings" value="no-av" id="no-av"><label for="no-av">No A/V</label></li>
+                </ul>
+              </div>
+              <div class="large-6 columns">
+                <label><strong>Number of seats required</strong></label>
+                <ul class="form-input">
+                  <li><input type="radio" name="number-seats" value="250" id="seats250"><label for="seats250">250 {name of room}</label></li>
+                  <li><input type="radio" name="number-seats" value="1000" id="seats1000"><label for="seats1000">1000 {name of room}</label></li>
+                  <li><input type="radio" name="number-seats" value="2000" id="seats2000"><label for="seats2000">2000 {name of room}</label></li>
+                </ul>
+              </div>
+              <div class="large-12 columns">
+                <label>Facilitator</label>          
+                <select>
+                  <option value="av-settings-01">Facilitator 001</option>
+                  <option value="av-settings-02">Facilitator 002</option>
+                  <option value="av-settings-03">Facilitator 003</option>
+                  <option value="av-settings-04">Facilitator 004</option>
+                </select>
+              </div>
+              <div class="large-6 columns">
+                <label>Select presenters</label>
+                <input type="text" name="additional-presenters" value="" id="additional-presenters" />
+              </div>
+              <div class="large-6 columns" style="margin-top: 26px; border: 1px solid #eee; border-radius: 3px; box-shadow: 1px 1px 1px #999">
+                <ul class="form-input">
+                  <li>First name Last name <span title="Remove presenter" style="float: right" class="remove">&#215;</span></li>
+                  <li>First name Last name <span title="Remove presenter" style="float: right" class="remove">&#215;</span></li>
+                  <li>First name Last name <span title="Remove presenter" style="float: right" class="remove">&#215;</span></li>
+                </ul>
+              </div>
+              <div class="large-12 columns spacer">
+                <label>Webinar Start Time: &nbsp;<strong>3:45 PM</strong> <small>[Pacific Daylight Time]</small></label>          
+                <ul class="time-select">
+                  <li class="hour">01</li>
+                  <li class="hour">02</li>
+                  <li class="hour active">03</li>
+                  <li class="hour">04</li>
+                  <li class="hour">05</li>
+                  <li class="hour">06</li>
+                  <li class="hour">07</li>
+                  <li class="hour">08</li>
+                  <li class="hour">09</li>
+                  <li class="hour">10</li>
+                  <li class="hour">11</li>
+                  <li class="hour">12</li>
+                  <li class="minute clear">: 00</li>
+                  <li class="minute">: 15</li>
+                  <li class="minute">: 30</li>
+                  <li class="minute active">: 45</li>
+                  <li class="ampm clear">AM</li>
+                  <li class="ampm active">PM</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="row collapse">
+              <div class="large-12 columns">
+                <label>Webinar Duration</label>
+                <ul class="time-select">
+                  <li class="hour">1 Hr.</li>
+                  <li class="hour active">2 Hr.</li>
+                  <li class="hour">3 Hr.</li>
+                  <li class="hour">4 Hr.</li>
+                  <li class="ampm">All Day</li>
+                  <li class="minute active clear">:00</li>
+                  <li class="minute">:15</li>
+                  <li class="minute">:30</li>
+                  <li class="minute">:45</li>
+                </ul>
+              </div> 
+            </div>
+          </div>
+        </div>
+        <div class="large-6 columns spacer">
+          <a href="#" class="left previous-step" data-edit-id="wizard--webinar-room">&laquo; Back</a>
+        </div>
+        <div class="large-6 columns">
+          <a href="#" class="button green right save-and-continue" data-edit-id="wizard--webinar-registration">Save &amp; Continue</a>
+        </div>
+      </div>
+    </form>
+    <a href="#" class="clear edit-link right" data-edit-id="wizard--webinar-session"><img class="icon" src="images/ico_edit.png" alt="" />Edit Your Choices</a>
+  </div>
+</div>
+
+<!-- (4) Registration -->
+<div class="large-12 columns wizard-question-content unanswered" id="wizard--webinar-registration">
+  <div class="large-3 columns left-sidebar-content">
+    <ul class="questions">
+      <li>
+        <div class="question-number">4</div>
+        <div class="large-10 columns question">Registration Settings<br /><span class="expanded-question"></span></div>
+      </li>
+    </ul>
+  </div>
+  <div class="large-7 columns form-content saved">
+    <h2>Registration Settings</h2>
+    <form>
+      <!-- Saved Summary -->
+      <div class="row summary-saved-data">
+        <div class="large-12 columns">
+          <div class="large-9 columns">
+            <h4>Registration Settings</h4>
+            <ul>
+              <li>Registration begins: <strong>02/05/14</strong></li>
+              <li>Registration ends: <strong>02/05/14</strong></li>
+              <li>This is a <strong>free</strong> webinar</li>
+              <li>This is a <strong>paid</strong> webinar as your payment option</li>
+              <li>Access is restricted to <strong>members only</strong></li>
+              <li>Access is open to <strong>anyone</strong></li>
+              <li>Non-members will be added to the site</li>
+              <li>Non-members will not be added to the site</li>
+              <li>Non-members will be activated in the site on <strong>02/04/14</strong></li>
+              <li><u>Regular fee</u> for <u>members</u> is <strong>$200.00</strong></li>
+              <li><u>Regular fee</u> for <u>non-members</u> is <strong>$200.00</strong></li>
+              <li><u>Early bird fee</u> for <u>members</u> is <strong>$150.00</strong></li>
+              <li><u>Early bird fee</u> for <u>non-members</u> is <strong>$150.00</strong></li>
+              <li><a href="#">View configuration email</a> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editable form content -->
+      <div class="row editable-form-data">
+        <div class="large-12 columns">
+          <div class="large-12 columns">
+            
+            <div class="row collapse">
+              <div class="large-12 columns">
+                <label>Use an existing registration form?</label>
+                <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-existing-registration" type="radio" name="use-existing-icohere-regigration-system" value="yes" id="use-existing-icohere-regigration-system-yes"><label for="use-existing-icohere-regigration-system-yes">Yes</label>
+                <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-existing-registration" type="radio" name="use-existing-icohere-regigration-system" value="no" id="use-existing-icohere-regigration-system-no"><label for="use-existing-icohere-regigration-system-no">No</label>
+              </div>
+
+              <div id="webinar--listenable-select-existing-registration" class="doYesno">
+                <div class="yes hide">
+                  <label>Select an existing registration to use with this Webinar.</label>
+                  <div class="large-5 columns">
+                    <select>
+                      <option value="existing-registration-01">Existing Registration 001</option>
+                      <option value="existing-registration-02">Existing Registration 001</option>
+                      <option value="existing-registration-03">Existing Registration 001</option>
+                      <option value="existing-registration-04">Existing Registration 001</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="no hide">
+                  <div class="large-12 columns spacer">
+                    <div class="small-5 columns">
+                      <label>Start Date</label>
+                      <div class="small-9 columns">
+                        <input type="text" placeholder="Date picker" />
+                      </div>
+                      <div class="small-3 columns">
+                        <span class="postfix">Date</span>
+                      </div>
+                    </div>
+                    <div class="small-5 columns">
+                      <label>End Date</label>
+                      <div class="small-9 columns">
+                        <input type="text" placeholder="Date picker" />
+                      </div>
+                      <div class="small-3 columns">
+                        <span class="postfix">Date</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="large-12 columns spacer">
+                    <label>Is this Webinar open to the general public?</label>
+                    <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-nonmembers-can-register" type="radio" name="webinar--listenable-register-members-only" value="no" id="webinar--listenable-register-members-only-yes"><label for="webinar--listenable-register-members-only-yes">Yes, <u>anyone</u> can register</label>
+                    <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-nonmembers-can-register" type="radio" name="webinar--listenable-register-members-only" value="yes" id="webinar--listenable-register-members-only-no"><label for="webinar--listenable-register-members-only-no">No, only allow site members to register</label>
+                  </div>
+
+                  <div class="row collapse spacer hide" id="webinar--listenable-nonmembers-can-register">
+                    <div class="large-12 columns">
+                      <label>Add non-members to the site?</label>
+                      <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-add-nonmembers" type="radio" name="webinar--listenable-select-add-nonmembers" value="yes" id="webinar--listenable-select-public-registration-yes"><label for="webinar--listenable-select-public-registration-yes">Yes, non-members should be added to the site</label>
+                      <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-add-nonmembers" type="radio" name="webinar--listenable-select-add-nonmembers" value="no" id="webinar--listenable-select-public-registration-no"><label for="webinar--listenable-select-public-registration-no">No, do not add non-members to the site</label>
+                    </div>
+      
+                    <div class="hide" id="webinar--listenable-select-add-nonmembers">
+                      <div class="large-12 columns">
+                        <div class="small-12 columns">
+                          <label>Add non-members to the site on</label>
+                          <div class="small-9 columns">
+                            <input type="text" placeholder="Date" />
+                          </div>
+                          <div class="small-3 columns">
+                            <span class="postfix">Date</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="large-12 columns">
+                        <div class="large-6 columns">
+                          <label class="inline">Send login credentials to new site members using:</label>
+                        </div>
+                        <div class="large-5 columns">
+                          <select>
+                            <option value="template-01">Template 001</option>
+                            <option value="template-02">Template 001</option>
+                            <option value="template-03">Template 001</option>
+                            <option value="template-04">Template 001</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="large-12 columns">
+                    <h4>Payments &amp; User Access</h4>
+                    <label>Please choose a payment type.</label>
+                    <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-fees" type="radio" name="webinar--listenable-select-fees" value="no" id="payment-type-webinar-free"><label for="payment-type-webinar-free">Free Webinar</label>
+                    <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-fees" type="radio" name="webinar--listenable-select-fees" value="yes" id="payment-type-webinar-paid"><label for="payment-type-webinar-paid">Paid Webinar</label>
+                  </div>                  
+                  <div class="row collapse hide" id="webinar--listenable-select-fees">
+                    <div class="large-12 columns">
+                      <h4>Webinar Fees</h4>
+                      <div class="small-5 columns">
+                        <label>Members, Regular Fee</label>
+                        <div class="small-2 columns">
+                          <span class="prefix">$</span>
+                        </div>
+                        <div class="small-10 columns">
+                          <input type="text" placeholder="0.00" />
+                        </div>
+                      </div>
+                      <div class="small-5 columns">
+                        <label>Non-members, Regular Fee</label>
+                        <div class="small-2 columns">
+                          <span class="prefix">$</span>
+                        </div>                  
+                        <div class="small-10 columns">
+                          <input type="text" placeholder="0.00" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="large-12 columns">
+                      <label>Create an Early-Bird, discount rate?</label>
+                      <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-earlybird" type="radio" name="early-bird-discount-rate" value="yes" id="early-bird-discount-rate-yes"><label for="early-bird-discount-rate-yes">Yes</label>
+                      <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-earlybird" type="radio" name="early-bird-discount-rate" value="no" id="early-bird-discount-rate-no"><label for="early-bird-discount-rate-no">No</label>
+                    </div>
+                    <div class="large-12 columns hide" id="webinar--listenable-select-earlybird">
+                      <div class="small-5 columns">
+                        <label>Members, Early-Bird fee</label>
+                        <div class="small-2 columns">
+                          <span class="prefix">$</span>
+                        </div>
+                        <div class="small-10 columns">
+                          <input type="text" placeholder="0.00" />
+                        </div>
+                      </div>
+                      <div class="small-5 columns">
+                        <label>Non-members, Early-Bird fee</label>
+                        <div class="small-2 columns">
+                          <span class="prefix">$</span>
+                        </div>                  
+                        <div class="small-10 columns">
+                          <input type="text" placeholder="0.00" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="large-12 columns">
+                      <h4>Confirmation Email</h4>
+                      <label>Set up confirmation email template.</label>
+                      <textarea placeholder="hello world"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- /end doYesno -->
+
+            </div>
+          </div>
+        </div>
+        <div class="large-6 columns spacer">
+          <a href="#" class="left previous-step" data-edit-id="wizard--webinar-session">&laquo; Back</a>
+        </div>        
+        <div class="large-6 columns">
+          <a href="#" class="button green right save-and-continue" data-edit-id="wizard--webinar-assessment">Save &amp; Continue</a>
+        </div>
+      </div>
+    </form>
+    <a href="#" class="clear edit-link right" data-edit-id="wizard--webinar-registration"><img class="icon" src="images/ico_edit.png" alt="" />Edit Your Choices</a>
+  </div>
+</div>
+
+<!-- (5) Assessment -->
+<div class="large-12 columns wizard-question-content unanswered" id="wizard--webinar-assessment">
+  <div class="large-3 columns left-sidebar-content">
+    <ul class="questions">
+      <li>
+        <div class="question-number">5</div>
+        <div class="large-10 columns question">Assessment<br /><span class="expanded-question"></span></div>
+      </li>
+    </ul>
+  </div>
+  <div class="large-7 columns form-content saved">
+    <h2>Assessment</h2>
+    <form>
+      <div class="row summary-saved-data">
+        <div class="large-12 columns">
+          <div class="large-9 columns">
+            <h4>Assessment</h4>
+            <ul>
+              <li>The Assessment is based on the following program: {program title}</li>
+              <li>Intructors: <br />
+                <ul>
+                  <li>Last name, First Name</li>
+                  <li>Last name, First Name</li>
+                  <li>Last name, First Name</li>
+                </ul>
+              </li>
+              <li>{number} of {credits type} will be awarded</li>
+              <li>No credits are being awarded</li>
+              <li>Students will have <strong>14 days</strong> after the end of the Webinar to complete their test</li>
+              <li>Students will be <strong>removed from the site</strong> once the course has expired</li>
+              <li>Students will be <strong>made inactive</strong> once the course has expired</li>
+              <li>Tests can be retaken <strong>2 times</strong></li>
+              <li>Students will not see their score</li>
+              <li>Students will see their score</li>
+              <li>Students will see their score and results</li>
+              <li><a href="#">View certificate of completion and message</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editable form content -->
+      <div class="row collapse editable-form-data">
+        <div class="large-12 columns">
+          <div class="large-12 columns">
+            <div class="large-12 columns">
+              <label>Is a program already configured for this webinar?</label>
+              <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-preconfigured-program" type="radio" name="preconfigured-program-exists" value="yes" id="preconfigured-program-exists-yes"><label for="preconfigured-program-exists-yes">Yes</label>
+              <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar--listenable-select-preconfigured-program" type="radio" name="preconfigured-program-exists" value="no" id="preconfigured-program-exists-no"><label for="preconfigured-program-exists-no">No</label>
+            </div>
+          </div>
+
+          <div id="webinar--listenable-select-preconfigured-program" class="doYesno">
+            <div class="yes hide">
+              <div class="large-12 columns">
+                <div class="large-9 columns">
+                  <label>Select program to link to this webinar</label>
+                  <select>
+                    <option value="program01">Program 001</option>
+                    <option value="program02">Program 002</option>
+                    <option value="program03">Program 003</option>
+                    <option value="program04">Program 004</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="large-12 columns">
+                <div class="large-9 columns">
+                  <label>Select the test for this webinar</label>
+                  <select>
+                    <option value="test01">Test 001</option>
+                    <option value="test02">Test 002</option>
+                    <option value="test03">Test 003</option>
+                    <option value="test04">Test 004</option>
+                  </select>
+                </div>
+              </div>
+            </div><!-- /end yes -->
+            
+            <div class="no hide">
+              <div class="large-12 columns">
+                <div class="large-9 columns">
+                  <label>New program name</label>
+                  <input type="text" name="new-program-name" />
+                </div>
+              </div>
+
+              <div class="large-12 columns">
+                <div class="large-9 columns">
+                  <label>Select the test for this webinar</label>
+                  <select>
+                    <option value="test01">Test 001</option>
+                    <option value="test02">Test 002</option>
+                    <option value="test03">Test 003</option>
+                    <option value="test04">Test 004</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="large-12 columns">
+                <div class="large-12 columns">
+                  <h4>Configure test settings</h4>
+                  <label>Select the instructors for this Webinar.</label>
+                  <select multiple="multiple" id="my-select" name="my-select[]">
+                    <option value='elem_1'>elem 1</option>
+                    <option value='elem_2'>elem 2</option>
+                    <option value='elem_3'>elem 3</option>
+                    <option value='elem_4'>elem 4</option>
+                    <option value='elem_100'>elem 100</option>
+                  </select>
+                </div>          
+                <div class="large-12 columns spacer">
+                  <label>Are credits offered for this Webinar?</label>
+                  <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar-listenable-assessment-credits" type="radio" name="credits-offered" value="yes" id="credits-offered-yes"><label for="credits-offered-yes">Yes</label>
+                  <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar-listenable-assessment-credits" type="radio" name="credits-offered" value="no" id="credits-offered-no"><label for="credits-offered-no">No</label>
+                </div>
+
+                <div class="hide" id="webinar-listenable-assessment-credits">
+                  <div class="large-12 columns">
+                    <div class="row collapse">
+                      <div class="small-6 columns">
+                        <label>Number of credits</label>
+                        <div class="small-12 columns">
+                          <div class="small-9 columns">
+                            <input type="text" placeholder="Number of credits" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="small-6 columns">
+                        <label>Type of credit</label>
+                        <div class="small-12 columns">
+                          <div class="small-9 columns">
+                            <input type="text" placeholder="Credit type" />
+                          </div>
+                          <div class="small-3 columns">
+                            <span class="postfix">Credit</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- end listenable container -->
+
+                <div class="large-9 columns">
+                  <!-- <h4>Webinar Registration</h4> -->
+                  <div class="row collapse">
+                    <div class="small-12 columns">
+                      <label>By how many days after the Webinar must students complete their test?</label>
+                      <div class="small-3 columns">
+                        <div class="small-8 columns">
+                          <input type="text" placeholder="" value="" />
+                        </div>
+                        <div class="small-4 columns">
+                          <span class="postfix">Days</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>            
+                </div>
+
+                <div class="large-12 columns">
+                  <div class="row collapse">
+                    <div class="small-12 columns">
+                      <label>How many times can tests be retaken?</label>
+                      <div class="small-3 columns">
+                        <div class="small-8 columns">
+                          <input type="text" placeholder="0" value="0" />
+                        </div>
+                        <div class="small-4 columns">
+                          <span class="postfix">Times</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="large-12 columns">
+                      <label>Display score and results:</label>
+                      <input type="radio" name="display-score-results" value="no" id="display-score-results-yes"><label for="display-score-results-yes">No</label>
+                      <input type="radio" name="display-score-results" value="yes" id="display-score-results-no"><label for="display-score-results-no">Score only</label>
+                      <input type="radio" name="display-score-results" value="both" id="display-score-results-both"><label for="display-score-results-both">Score &amp; Results</label>
+                      <input type="radio" name="display-score-results" value="both" id="display-score-results-other"><label for="display-score-results-other">Another option</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="large-12 columns spacer">
+                  <label>After the course expires:</label>
+                  <input type="radio" name="expired-student-action" value="remove" id="expired-student-remove"><label for="expired-student-remove">Remove student from the site</label>
+                  <input type="radio" name="expired-student-action" value="inactive" id="expired-student-inactive"><label for="expired-student-inactive">Make student inactive in the site</label>
+                </div>
+
+                <div class="large-12 columns">
+                  <h4>Test Result Message Templates</h4>
+                  <div class="large-3 columns">
+                    <ul>
+                      <li>Merge codes</li>
+                      <li>{FirstName}</li>
+                      <li>{FullName}</li>
+                      <li>{CourseName}</li>
+                      <li>{Credit}</li>
+                    </ul>
+                  </div>
+                  <div class="large-9 columns">
+                    <label>Message on pass (WYSIWYG)</label>
+                    <textarea placeholder="pass message"></textarea>
+                  </div>
+                </div>
+                <div class="large-12 columns">
+                  <label>Message on fail (WYSIWYG)</label>
+                  <textarea placeholder="fail message"></textarea>
+                </div>
+                <div class="large-6 columns">
+                  <input id="checkbox1" type="checkbox"><label for="checkbox1">Also send results message via email.</label>
+                </div>
+                <div class="large-12 columns">
+                  <label>Message Subject line</label>
+                  <input type="text" name="certificate-subject" placeholder="Subject" />
+                </div>
+                <div class="large-12 columns spacer" id="wizard--webinar-certificate">
+                  <h4>Certificate of Completion</h4>
+                  <label>Send a certificate to students who pass?</label>
+                  <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar-listenable-send-certificate"  type="radio" name="send-certificate-onpass" value="yes" id="send-certificate-onpass-yes"><label for="send-certificate-onpass-yes">Yes</label>
+                  <input class="listenableField" data-listenable-field-type="radio" data-listenable-field="webinar-listenable-send-certificate"  type="radio" name="send-certificate-onpass" value="no" id="send-certificate-onpass-no"><label for="send-certificate-onpass-no">No</label><br />
+                  
+                  <div class="hide" id="webinar-listenable-send-certificate">
+                    <label>Message Subject line</label>
+                    <input type="text" name="certificate-subject" placeholder="Subject" disabled="disabled" />
+                    <label>Message</label>
+                    <textarea placeholder="pass message" disabled="disabled"></textarea>
+                    <label class="notice">Please note that this wizard will automatically pre-select the default certificate template to be sent out.  You may modify the certificate template to be used from within the assessments module.</label>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end no -->
+          </div>
+          <div class="large-12 columns">
+            <div class="large-6 columns spacer">
+              <a href="#" class="left previous-step" data-edit-id="wizard--webinar-registration">&laquo; Back</a>
+            </div>
+            <div class="large-6 columns">
+              <a href="#" class="button green right save-and-continue save-and-review" data-edit-id="wizard--webinar-review">Save &amp; Continue</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <a href="#" class="clear edit-link right" data-edit-id="wizard--webinar-assessment"><img class="icon" src="images/ico_edit.png" alt="" />Edit Your Choices</a>
+  </div>
+</div>
+
+<!-- (6) Review & confirm -->
+<div class="large-12 columns wizard-question-content last-question unanswered" id="wizard--webinar-review">
+  <div class="large-3 columns left-sidebar-content">
+    <ul class="questions">
+      <li>
+        <div class="question-number">6</div>
+        <div class="large-10 columns question">Review &amp; Confirm<br /><span class="expanded-question">One last step and you are done!</span></div>
+      </li>
+    </ul>
+  </div>
+  <div class="large-7 columns form-content saved">
+    <h2>Review &amp; Confirm</h2>
+    <form>
+      <!-- Editable form content -->
+      <div class="row collapse editable-form-data">
+        <div class="large-12 columns">
+          <div class="large-12 columns">
+            <label>Your Webinar setup is now complete.  Please review the summary of your choices, and click confirm to create this webinar.</label>
+            <div class="large-12 columns">
+              <ul class="buttons">
+                <li><a href="#top" class="jumpLink spacer button black left " data-edit-id="wizard--webinar-review">&uarr; Review</a></li>
+                <li><a href="#" class="spacer button green right save-and-exit create-webinar" id="create-webinar" data-edit-id="wizard--webinar-review">Create Webinar</a></li>
+              </ul>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--#
+    # Dialog box for use with Saving and
+    # discarding form-step changes 
+    #
+    # -->
+
+<div class="dialogbox hide">
+  <div class="message">You have unsaved changes!<br /><br />
+    <span>You may either save your current question and edit your new selection, or cancel and continue editing.</span>
+  </div>
+  <ul class="buttons">
+    <li><a href="#" class="button gray">Cancel</a></li>
+    <li><a href="#" class="button green">Save &amp; Continue</a></li>
+  </ul>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="javascripts/jquery.scrollTo/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="javascripts/jquery.multi-select.js"></script>
+<script type="text/javascript" src="javascripts/application.js"></script>
+<script src="javascripts/foundation.min.js"></script>
+<script>$(document).foundation();</script>
+<script type="text/javascript">
+  // Documentation @ http://loudev.com/ 
+  // Watch multiselect for changes, and populate a hidden <select> input for json to read properly
+
+  $('#my-select').multiSelect();  // enable search functionality
+
+</script>
+</body>
+</html>
